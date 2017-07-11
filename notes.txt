@@ -1,0 +1,28 @@
+
+ psql -h localhost -d postgres -p 5432 -U postgres   
+docker run --name alfio-db2 -p 5432:5432 -e POSTGRES_PASSWORD=alfiopassword -d postgres
+https://stackoverflow.com/questions/37694987/connecting-to-postgresql-in-a-docker-container-from-outside
+https://www.postgresql.org/docs/9.5/static/app-pg-ctl.html
+https://www.cyberciti.biz/faq/alpine-linux-install-bash-using-apk-command/
+https://github.com/exteso/alf.io
+https://www.reddit.com/r/androiddev/comments/4gt97e/psa_apparently_assigning_a_ton_of_memory_to/
+https://web.liferay.com/web/shuyang.zhou/blog/-/blogs/liferay-jvm-tuning?_ga=2.2864116.517512415.1499350748-666200297.1499350748
+https://web.liferay.com/community/forums/-/message_boards/message/4680640
+
+-XX:NewSize=256m 
+-XX:MaxNewSize=512m 
+-Xms1024m 
+-Xmx1024m 
+-XX:PermSize=256m  
+-XX:MaxPermSize=512m 
+-XX:+UseParNewGC 
+-XX:+UseConcMarkSweepGC 
+-XX:+CMSParallelRemarkEnabled 
+-XX:SurvivorRatio=20 
+-XX:ParallelGCThreads=2 
+
+
+
+https://dba.stackexchange.com/questions/1285/how-do-i-list-all-databases-and-tables-using-psql
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+https://askubuntu.com/questions/175514/how-to-set-java-home-for-java

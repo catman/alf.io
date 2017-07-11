@@ -24,7 +24,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
 }
 
-//as pointed out by @facundofarias, we should check minimum javac version in order to avoid problems with type inference mechanism during compilation
+//as pointed out by @facundofarias, we should check minimum javac version in order to avoid problems with type inference mechanism // during compilation
+
 task validate {
     //check JDK version
     def javaVersion = JavaVersion.current();
@@ -80,10 +81,7 @@ ext {
     baseImage = "openjdk:jre-alpine"
     port = "8080"
 
-
     // dockerfile template attributes
-
-
 
     switch (profile) {
         case 'dev-pgsql':
@@ -189,7 +187,6 @@ dependencies {
 }
 
 // -- license configuration
-
 license {
     header = rootProject.file('config/HEADER')
     strictCheck = true
@@ -203,9 +200,7 @@ license {
     include '**/*.sql'
 }
 
-
 import org.apache.tools.ant.filters.ReplaceTokens
-
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -213,12 +208,9 @@ import java.time.format.DateTimeFormatter
 processResources {
 
     doLast {
-
         final gradleProperties = new File((File) it.destinationDir, 'application.properties')
         final properties = new Properties()
-
         assert gradleProperties.file
-
         gradleProperties.withReader { properties.load(it) }
         properties['alfio.version'] = project.version
         properties['alfio.build-ts'] = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ISO_ZONED_DATE_TIME)
@@ -240,9 +232,11 @@ test {
     }
 }
 
-
 bootRun {
-    def externalConfig = new File("./custom.jvmargs")
+		
+	println "At the start of bootRun ......................................"
+    
+	def externalConfig = new File("./custom.jvmargs")
     def opts = []
     opts += [
         "-Dspring.profiles.active=${project.springProfilesActive}",
@@ -267,7 +261,6 @@ bootRepackage {
 }
 
 // -- code-coverage
-
 jacoco {
     toolVersion = '0.7.2.201409121644'
 }
@@ -298,7 +291,6 @@ task dockerize(type: Copy) {
 task distribution(type: Copy) {
     from new File(project.buildDir, "libs/alfio-${project.version}-boot.war")
     into "${buildDir}/dockerize"
-
     dependsOn build, dockerize
 }
 
